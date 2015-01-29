@@ -1,3 +1,21 @@
+(function (factory) {
+  if (typeof define === 'function' && define.amd) {
+    //RequireJS (AMD) build system
+    define(['socket.io'], factory);
+  } else if (typeof exports === 'object' && exports) {
+    //CommonJS build system
+    var io = require('socket.io');
+    module.exports = factory(io,adapter);
+  } else {
+    //Vanilla JS, ensure dependencies are loaded correctly
+    if (typeof window.io !== 'object' || !window.io) {
+    	throw new Error("EasyRTC requires socket.io \n"
+                        + "http://easyrtc.com/docs/guides/easyrtc_client_tutorial.php");
+    }
+    window.easyrtc = factory(window.io);
+  }
+})(function(io, undefined) {
+  
 //
 // the below code is a copy of the standard polyfill adapter.js
 //
@@ -181,7 +199,8 @@ if (!window.createIceServer) {
     window.createIceServer = function(url, username, credential) {
         return {'url': url, 'credential': credential, 'username': username};
     };
-}/** @class
+}
+/** @class
  *@version 1.0.12
  *<p>
  * Provides client side support for the EasyRTC framework.
@@ -5236,7 +5255,6 @@ var Easyrtc = function() {
 
 };
 
-window.easyrtc = new Easyrtc();
 var easyrtc_constantStrings = {
   "unableToEnterRoom":"Unable to enter room {0} because {1}" ,
   "resolutionWarning": "Requested video size of {0}x{1} but got size of {2}x{3}",
@@ -5251,3 +5269,6 @@ var easyrtc_constantStrings = {
    "gumFailed":"Failed to get access to local media. Error code was {0}.",
    "requireAudioOrVideo":"At least one of audio and video must be provided"   
 };
+  
+return new Easyrtc();
+});

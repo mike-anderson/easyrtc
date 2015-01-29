@@ -34,6 +34,13 @@
     "colors"    : "*",
     "underscore": "1.5.x"
   },
+  
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-concat": "*",
+    "grunt-wrap": "*"
+  },
 
   "analyze"     : false,
 

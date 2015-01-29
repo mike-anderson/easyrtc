@@ -5052,5 +5052,3 @@ var Easyrtc = function() {
 
 
 };
-
-window.easyrtc = new Easyrtc();
