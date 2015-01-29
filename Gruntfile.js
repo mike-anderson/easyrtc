@@ -17,19 +17,27 @@ module.exports = function(grunt) {
     
     wrap: {
       options: {
-        separator: '',
-		wrapper: function () {
-          var requireWrapper = grunt.file.read('api/src/amd_common_vanilla_wrapper.js');
-          return requireWrapper.split('/*{{ CONTENT }}*/');
-        }
+        separator: ''
       },
       easyrtc: {
         src: ['api/easyrtc.js'],
-        dest: 'api/easyrtc.js'
+        dest: 'api/easyrtc.js',
+        options: {
+          wrapper: function () {
+            var requireWrapper = grunt.file.read('api/src/easyrtc_wrapper.js');
+            return requireWrapper.split('/*{{ CONTENT }}*/');
+          } 
+        }
       },
       easyrtc_ft: {
         src: ['api/easyrtc_ft.js'],
-        dest: 'api/easyrtc_ft.js'
+        dest: 'api/easyrtc_ft.js',
+        options: {
+          wrapper: function () {
+            var requireWrapper = grunt.file.read('api/src/easyrtc_ft_wrapper.js');
+            return requireWrapper.split('/*{{ CONTENT }}*/');
+          } 
+        }
       }
     },
     

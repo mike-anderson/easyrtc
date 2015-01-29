@@ -5,7 +5,7 @@
   } else if (typeof exports === 'object' && exports) {
     //CommonJS build system
     var io = require('socket.io');
-    module.exports = factory(io,adapter);
+    module.exports = factory(io);
   } else {
     //Vanilla JS, ensure dependencies are loaded correctly
     if (typeof window.io !== 'object' || !window.io) {
